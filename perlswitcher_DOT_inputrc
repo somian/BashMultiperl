@@ -1,0 +1,6 @@
+"\C-o":"\C-M _toggle_perlinstance\C-M"
+
+"\C-^":"\C-M winhomed\C-M"
+
+"\xAD":noop
+
