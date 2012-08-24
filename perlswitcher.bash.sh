@@ -2,9 +2,10 @@
 
 # First created: 2012-05-08
 # Last modified: 2012-08-24T06:57:25 UTC-04:00
-# This following doesn't work, but I created an inputrc file and
-# it works using that approach.
+# This following doesn't work:
 # $ bind -x '"\C-o"':'"_toggle_perlinstance"\C-M'
+#  ...but I created an inputrc file with this line
+# and all works fine using that approach:
 # .inputrc line: "\C-o":"\C-M _toggle_perlinstance\C-M"
 
 declare PEIR=/usr/bin/perl
@@ -61,7 +62,7 @@ shopt -u extdebug
 # Shifted over from file ~/.bash_common on 08 May 2012
 # NOTA BENE: when we are using the StrawberryPerl installation, we are employing
 # the "sitecustomize" mechanism that makes perl "do" the file
-#         C:/Strawberry/perl/site/lib/sitecustomize.pl
+#   C:/Strawberry/perl/site/lib/sitecustomize.pl
 # each time we run (unless running perl with '-f' flag); and compiler errors are
 # *SILENCED*. That's dangerous! Much wasted time if that happens!
 
@@ -277,21 +278,11 @@ function _toggle_perlinstance
     done
     IFS=$_Save_IFS
     unset SELT NEWPATH
-} # This following doesn't work, but I created an inputrc file and
-# it works using that approach:
-# bind -x '"\C-o"':'"_toggle_perlinstance"\C-M'
-declare -x -f _toggle_perlinstance
+}
+
+# Make functions exportable
+declare -x -f _toggle_perlinstance perl_v_in_use pviu_insurance set_perl_v_in_use _Uq
 
 unset DeeBuggins
 unset __this_shell_script
 unset _Save_IFS
-
-# This was something we were doing in the earlier version of this code:
-# declare +x SBY_PERL=$(/bin/cygpath -u 'C:/Strawberry')
-# declare +x -a SBY_SDRS=('/C/' '/Perl/')
-#
-# for SD in ${SBY_SDRS[@]}
-#   do
-#     RESULT=${RESULT:+"$RESULT:"}$SBY_PERL${SD}bin
-#   done
-# export NEWPATH="$RESULT:$PATH"
